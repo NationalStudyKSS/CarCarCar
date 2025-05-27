@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private AudioSource normalBGM;
+    [SerializeField] private AudioSource invincibleBGM;
+
     public float moveSpeed;
     public float limitX;
     public int playerHp = 5;
@@ -43,7 +46,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        // ✅ 무적 타이머 관리
+        // 무적 타이머 관리
         if (_isInvincible)
         {
             _invincibleTimer -= Time.deltaTime;
@@ -51,6 +54,11 @@ public class PlayerController : MonoBehaviour
             {
                 _isInvincible = false;
                 Debug.Log("무적 해제");
+
+                // 음악 전환
+                invincibleBGM.Stop();
+                normalBGM.Play();
+                Debug.Log("기본 BGM 재생");
             }
         }
 
@@ -64,7 +72,7 @@ public class PlayerController : MonoBehaviour
             {
                 Instantiate(hitEffect, transform.position, transform.rotation);
                 Destroy(other.gameObject);
-                Debug.Log("무적 상태! 데미지 무시");
+                
                 return;
             }
 
@@ -93,6 +101,14 @@ public class PlayerController : MonoBehaviour
 
     public void ActivateInvincibility(float duration)
     {
+        if (!_isInvincible)
+        {
+            // 처음 무적 시작
+            normalBGM.Stop();
+            invincibleBGM.Play();
+            Debug.Log("무적 BGM 재생 시작");
+        }
+
         _isInvincible = true;
         _invincibleTimer = duration;
         Debug.Log($"무적 시작! {duration}초");
