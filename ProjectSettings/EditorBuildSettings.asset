@@ -6,9 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/01_Scenes/CarCarCar/00_Intro.unity
-    guid: 34a357182886ceb4d8b093363aaa7629
-  - enabled: 1
-    path: Assets/01_Scenes/CarCarCar/01_MainScene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+    path: Assets/01_Scenes/UIUX/07_Example_UI_Copy.unity
+    guid: 0a946c0a609111748a3c5cc7f2bbb6d1
   m_configObjects: {}
