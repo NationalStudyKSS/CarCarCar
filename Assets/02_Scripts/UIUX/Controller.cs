@@ -17,20 +17,6 @@ public class Controller : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            PressLeftBtn();
-            if (left == true)
-            {
-                _player.Translate(-moveX * Time.deltaTime, 0, 0);
-                if (_player.transform.position.x < -limitX)
-                {
-                    Debug.Log("더이상 못가!!!");
-                    _player.transform.position = new Vector3(-limitX, transform.position.y, 0);
-                }
-            }
-        }
-
         if (left == true)
         {
             _player.Translate(-moveX * Time.deltaTime, 0, 0);

@@ -33,24 +33,24 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            transform.Translate(-moveSpeed * Time.deltaTime, 0, 0);
+        //if (Input.GetKey(KeyCode.LeftArrow))
+        //{
+        //    transform.Translate(-moveSpeed * Time.deltaTime, 0, 0);
 
-            if (transform.position.x < -limitX)
-            {
-                transform.position = new Vector3(-limitX, transform.position.y, transform.position.z);
-            }
-        }
+        //    if (transform.position.x < -limitX)
+        //    {
+        //        transform.position = new Vector3(-limitX, transform.position.y, transform.position.z);
+        //    }
+        //}
 
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            transform.Translate(moveSpeed * Time.deltaTime, 0, 0);
-            if (transform.position.x > limitX)
-            {
-                transform.position = new Vector3(limitX, transform.position.y, transform.position.z);
-            }
-        }
+        //if (Input.GetKey(KeyCode.RightArrow))
+        //{
+        //    transform.Translate(moveSpeed * Time.deltaTime, 0, 0);
+        //    if (transform.position.x > limitX)
+        //    {
+        //        transform.position = new Vector3(limitX, transform.position.y, transform.position.z);
+        //    }
+        //}
 
         // 무적 타이머 관리
         if (_isInvincible)
