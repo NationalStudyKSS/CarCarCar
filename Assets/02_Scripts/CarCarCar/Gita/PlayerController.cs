@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -19,10 +20,15 @@ public class PlayerController : MonoBehaviour
 
     public event UnityAction HitEnemy;
 
-    public Transform hpBar;
+    public Image[] _hpIcons;
 
     private bool _isInvincible = false;         //  무적 상태 여부
     private float _invincibleTimer = 0f;         //  무적 시간 타이머
+
+    private void Start()
+    {
+        invincibleBGM.Stop();
+    }
 
     // Update is called once per frame
     void Update()
@@ -82,7 +88,17 @@ public class PlayerController : MonoBehaviour
             playerHp = Mathf.Max(playerHp-1, 0);
             Instantiate(hitEffect,transform.position, transform.rotation);
             Destroy(other.gameObject);
-            hpBar.localScale = new Vector3((float)playerHp / maxHp, 1, 1);
+            for(int i=0;i < _hpIcons.Length; i++)
+            {
+                if (i < playerHp)
+                {
+                    _hpIcons[i].enabled = true;
+                }
+                else
+                {
+                    _hpIcons[i].enabled = false;
+                }
+            }
 
             if (playerHp <= 0)
             {
@@ -94,7 +110,17 @@ public class PlayerController : MonoBehaviour
         else if (other.CompareTag("Potion"))
         {
             playerHp = Mathf.Min(playerHp + 1, maxHp);
-            hpBar.localScale = new Vector3((float)playerHp / maxHp, 1, 1);
+            for (int i = 0; i < _hpIcons.Length; i++)
+            {
+                if (i < playerHp)
+                {
+                    _hpIcons[i].enabled = true;
+                }
+                else
+                {
+                    _hpIcons[i].enabled = false;
+                }
+            }
         }
         
     }
